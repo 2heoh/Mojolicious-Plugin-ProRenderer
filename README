@@ -1,4 +1,4 @@
-Mojolicious-Plugin-ProRenderer
+Mojolicious::Plugin::ProRenderer - plugin renderer HTML::Template::Pro for Mojolicious
 
 The README is used to introduce the module and provide instructions on
 how to install the module, any machine dependencies it may have (for
@@ -10,6 +10,104 @@ file from a module distribution so that people browsing the archive
 can use it to get an idea of the module's uses. It is usually a good idea
 to provide version information here so that people can decide whether
 fixes for the module are worth downloading.
+
+
+SYNOPSIS
+
+1. Enable plugin:
+
+for Mojolicious
+===============
+  
+    sub startup {
+        my $self = shift;
+        ...
+        $self->plugin('pro_renderer');
+        ...
+        # or with options:
+        $self->plugin(pro_renderer => {
+            template_options => {
+                debug => 1,
+                ...
+            }
+        });
+        ....
+    }
+
+    
+for Mojolicious::Lite
+=====================
+    #!/usr/bin/perl
+    use Mojolicious::Lite;
+    ...
+    plugin pro_renderer; 
+    ...
+    # or with options:
+    plugin pro_renderer => {
+      template_options => {
+        debug => 1,
+        ...
+      }
+    };
+
+2. Add your params in controller:
+
+Mojolicious
+===========
+
+    # some action
+    sub action {
+        my $self = shift;
+        
+        ...
+
+        $self->render(
+            # template name
+            'index'
+            # template scalar
+            text   => 'This a text', 
+            # template list
+            list   => [
+                { id => 1 }, 
+                { id => 2 }
+            ],
+            # force hadler
+            handler => 'pro'
+        );
+    }
+
+Mojolicious::Lite
+=================
+
+    get '/' => sub {
+        my $self = shift;
+        ...
+        $self->render(
+            # template name
+            'index'
+            # template scalar
+            text   => 'This a text', 
+            # template list
+            list   => [
+                { id => 1 }, 
+                { id => 2 }
+            ],
+            # force hadler
+            handler => 'pro'
+        );    
+    }
+
+
+this will render template index.html.pro from /templates/ like this:
+
+@@ index.html.pro
+my text is: <tmpl_var text>
+<ul>
+<tmpl_loop list>
+    <li><tmpl_var id></li>
+</tmpl_loop>
+</ul>
+
 
 
 INSTALLATION
