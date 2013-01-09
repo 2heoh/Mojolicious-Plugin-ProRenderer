@@ -1,23 +1,30 @@
-Mojolicious::Plugin::ProRenderer - plugin renderer HTML::Template::Pro for Mojolicious
+NAME
 
-The README is used to introduce the module and provide instructions on
-how to install the module, any machine dependencies it may have (for
-example C compilers and installed libraries) and any other information
-that should be provided before the module is installed.
+    Mojolicious::Plugin::ProRenderer
 
-A README file is required for CPAN modules since CPAN extracts the README
-file from a module distribution so that people browsing the archive
-can use it to get an idea of the module's uses. It is usually a good idea
-to provide version information here so that people can decide whether
-fixes for the module are worth downloading.
+DESCRIPTION 
+
+    Mojolicious::Plugin::ProRenderer - plugin renderer HTML::Template::Pro for Mojolicious
+
+
+    The README is used to introduce the module and provide instructions on
+    how to install the module, any machine dependencies it may have (for
+    example C compilers and installed libraries) and any other information
+    that should be provided before the module is installed.
+
+    A README file is required for CPAN modules since CPAN extracts the README
+    file from a module distribution so that people browsing the archive
+    can use it to get an idea of the module's uses. It is usually a good idea
+    to provide version information here so that people can decide whether
+    fixes for the module are worth downloading.
 
 
 SYNOPSIS
 
-1. Enable plugin:
+    1. Enable plugin:
 
-for Mojolicious
-===============
+    for Mojolicious
+    ===============
   
     sub startup {
         my $self = shift;
@@ -35,8 +42,8 @@ for Mojolicious
     }
 
     
-for Mojolicious::Lite
-=====================
+    for Mojolicious::Lite
+    =====================
     #!/usr/bin/perl
     use Mojolicious::Lite;
     ...
@@ -50,10 +57,10 @@ for Mojolicious::Lite
       }
     };
 
-2. Add your params in controller:
+    2. Add your params in controller:
 
-Mojolicious
-===========
+    Mojolicious
+    ===========
 
     # some action
     sub action {
@@ -65,7 +72,7 @@ Mojolicious
             # template name
             'index'
             # template scalar
-            text   => 'This a text', 
+            text   => 'This is a text', 
             # template list
             list   => [
                 { id => 1 }, 
@@ -76,9 +83,9 @@ Mojolicious
         );
     }
 
-Mojolicious::Lite
-=================
-
+    Mojolicious::Lite
+    =================
+    # GET /
     get '/' => sub {
         my $self = shift;
         ...
@@ -86,7 +93,7 @@ Mojolicious::Lite
             # template name
             'index'
             # template scalar
-            text   => 'This a text', 
+            text   => 'This is a text', 
             # template list
             list   => [
                 { id => 1 }, 
@@ -97,16 +104,15 @@ Mojolicious::Lite
         );    
     }
 
+    this will render template index.html.pro from /templates/ like this:
 
-this will render template index.html.pro from /templates/ like this:
-
-@@ index.html.pro
-my text is: <tmpl_var text>
-<ul>
-<tmpl_loop list>
-    <li><tmpl_var id></li>
-</tmpl_loop>
-</ul>
+    @@ index.html.pro
+    my text is: <tmpl_var text>
+    <ul>
+    <tmpl_loop list>
+        <li><tmpl_var id></li>
+    </tmpl_loop>
+    </ul>
 
 
 
@@ -180,4 +186,3 @@ YOUR LOCAL LAW. UNLESS REQUIRED BY LAW, NO COPYRIGHT HOLDER OR
 CONTRIBUTOR WILL BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, OR
 CONSEQUENTIAL DAMAGES ARISING IN ANY WAY OUT OF THE USE OF THE PACKAGE,
 EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
